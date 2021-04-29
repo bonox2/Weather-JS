@@ -1,0 +1,130 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+    font-family: Google Sans,arial,sans-serif !important;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+*,::before,::after{
+    box-sizing: border-box;
+}
+
+/* style start */
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    width:100%;
+}
+
+
+.dashboard-search{
+    padding: 60px 0;
+}
+.dashboard-search-input{
+    width: 100%;
+    padding: 8px;
+    border-radius: 24px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+
+
+
+.country-section{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 18px;
+    border: 1px solid gray;
+}
+.country-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+.country-temp{
+    display: flex;
+}
+.left-temp{
+    display: flex;
+    align-items: center;
+}
+.right-more-info{
+    display: flex;
+    flex-direction: column;
+    color: #70757a;
+    font-size: 12px;
+}
+.temp{
+    font-size: 48px;
+}
+.country-type{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.name-country{
+    font-size: 22px;
+}
+
+.temp-hours{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+.info-day{
+    display: flex;
+    flex-direction: column;
+    align-items:center ;
+    justify-content: center;
+}
+.data{
+    width: 14%;
+    color: #bababa;
+    display: block;
+    text-align: center;
+}
