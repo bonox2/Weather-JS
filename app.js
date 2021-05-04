@@ -50,32 +50,32 @@ async function getData(url, cb) {
     }
 }
 
-function addMessages(elem, messages) {
-let messagesHtml = ''
-    messages.forEach(message => {
-    messagesHtml += renderMessage(message)
+function addCity(elem, city) {
+let cityHtml = ''
+    city.forEach(city => {
+    cityHtml += renderCity(city)
     });
-    elem.innerHTML = messagesHtml
+    elem.innerHTML = cityHtml
   }
-  function renderMessage(data) {
+  function renderCity(data) {
     const html =
         `<div class="country-section">
         <div class="country-info">
             <div class="country-temp">
                 <div class="left-temp">
                     <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                    <div class="temp">13 °C</div>
+                    <div class="temp">${data.temp}</div>
                 </div>
                 <div class="right-more-info">
                     <div>Вероятность осадков: 84%</div>
                     <div>Влажность: 85%</div>
-                    <div>Ветер: 13 км / ч</div>
+                    <div>Ветер: ${data.speed}км / ч</div>
                 </div>
             </div>
             <div class="country-type">
                 <div class="name-country">London</div>
                 <div class="day-time">четверг 5:00 PM</div>
-                <div class="type-wheather">Облачно</div>
+                <div class="type-wheather">${data.main}</div>
             </div>
         </div>
         <div class="temp-hours">
