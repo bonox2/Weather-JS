@@ -95,6 +95,7 @@ table {
     padding: 15px;
     border-radius: 24px;
     background-color: #badfdf;
+    margin-bottom: 30px;
 }
 .city-info{
     display: flex;

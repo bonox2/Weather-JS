@@ -66,18 +66,18 @@ function addCity(elem, cities) {
             <div class="city-temp">
                 <div class="left-temp">
                     <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                    <div class="temp">${((data.main.temp)-32)}</div>
+                    <div class="temp">${data.main.temp}</div>
                 </div>
                 <div class="right-more-info">
-                    <div>Вероятность осадков: 84%</div>
-                    <div>Влажность: 85%</div>
-                    <div>Ветер: ${data.speed}км / ч</div>
+                    <div>Чувствуется как: ${data.main.feels_like}</div>
+                    <div>Влажность: ${data.main.humidity}</div>
+                    <div>Ветер: ${data.wind.speed}км / ч</div>
                 </div>
             </div>
             <div class="city-type">
                 <div class="name-city">${data.name}</div>
-                <div class="day-time">четверг 5:00 PM</div>
-                <div class="type-wheather">${data.main}</div>
+                <div class="day-time">${data.dt}</div>
+                <div class="type-wheather">${data.weather[1]}</div>
             </div>
         </div>
         <div class="temp-hours">
