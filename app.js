@@ -1,5 +1,7 @@
 const API_KEY = '0ce7524a2107c97ceb90a85e7711636b'
 const citySearch = document.getElementById('citySearch')
+const citiesList = document.getElementById('citiesList')
+
 const weatherList = []
 if (!localStorage.cities) {
     localStorage.cities = JSON.stringify([])
@@ -38,6 +40,7 @@ function getDataByCityId(cityId) {
     getData(url, data => {
         console.log(data);
         weatherList.push(data)
+        addCity(citiesList, weatherList)
     })
 }
 async function getData(url, cb) {
@@ -49,22 +52,21 @@ async function getData(url, cb) {
         console.warn(error);
     }
 }
-
-function addCity(elem, city) {
-let cityHtml = ''
-    city.forEach(city => {
-    cityHtml += renderCity(city)
-    });
-    elem.innerHTML = cityHtml
-  }
+function addCity(elem, cities) {
+    let cityHtml = ''
+        cities.forEach(city => {
+        cityHtml += renderCity(city)
+        });
+        elem.innerHTML = cityHtml
+      }
   function renderCity(data) {
     const html =
-        `<div class="country-section">
-        <div class="country-info">
-            <div class="country-temp">
+        `<div class="city-section">
+        <div class="city-info">
+            <div class="city-temp">
                 <div class="left-temp">
                     <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                    <div class="temp">${data.temp}</div>
+                    <div class="temp">${((data.main.temp)-32)}</div>
                 </div>
                 <div class="right-more-info">
                     <div>Вероятность осадков: 84%</div>
@@ -72,8 +74,8 @@ let cityHtml = ''
                     <div>Ветер: ${data.speed}км / ч</div>
                 </div>
             </div>
-            <div class="country-type">
-                <div class="name-country">London</div>
+            <div class="city-type">
+                <div class="name-city">${data.name}</div>
                 <div class="day-time">четверг 5:00 PM</div>
                 <div class="type-wheather">${data.main}</div>
             </div>
