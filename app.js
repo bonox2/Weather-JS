@@ -94,39 +94,44 @@ function renderCity(data) {
         </div>
         <div class="temp-hours">
             <div class="info-day">
-                <div class="data">пн</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">1 AM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[0].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">вт</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">4 AM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[1].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">ср</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">7 AM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[2].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">чт</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">10 AM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[3].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">пт</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">1 PM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[4].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">сб</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">4 PM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[5].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">нд</div>
-                <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                <div class="temp-day">11 °C</div>
+                <div class="data">7 PM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[6].main.temp)} °C</div>
+            </div>
+            <div class="info-day">
+                <div class="data">10 PM</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
+                <div class="temp-day">${Math.round(data.forecast[7].main.temp)} °C</div>
             </div>
         </div>
     </div>`
