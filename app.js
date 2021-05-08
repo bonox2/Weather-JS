@@ -1,13 +1,13 @@
 const API_KEY = '0ce7524a2107c97ceb90a85e7711636b'
 const citySearch = document.getElementById('citySearch')
 const citiesList = document.getElementById('citiesList')
-
+const timeZoneOffsetSeconds = new Date().getTimezoneOffset() * -1 * 60
 const weatherList = []
 if (!localStorage.cities) {
     localStorage.cities = JSON.stringify([])
 }
 const citiesLS = JSON.parse(localStorage.cities)
-console.log(citiesLS);
+
 getWeatherBySavedCities(citiesLS)
 
 citySearch.addEventListener('submit', event => {
@@ -18,8 +18,8 @@ citySearch.addEventListener('submit', event => {
 })
 
 function getWeatherBySavedCities(citiesIdList) {
-    citiesIdList.forEach(cityId => {
-        getDataByCityId(cityId)
+    citiesIdList.forEach(city => {
+        getDataByCityId(city.id)
     });
 }
 
@@ -28,56 +28,68 @@ function getDataByCityName(cityName) {
     `
     getData(url, data => {
         console.log(data);
-        if (!citiesLS.includes(data.sys.id)) {
-            citiesLS.push(data.id)
+        const exist = citiesLS.find(city => city.id === data.id)
+        if (!exist) {
+            citiesLS.push({ id: data.id, timestamp: Date.now() })
             localStorage.cities = JSON.stringify(citiesLS)
+            getDataByCityId(data.id)
         }
     })
 }
 function getDataByCityId(cityId) {
     const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&id=${cityId}&appid=${API_KEY}
     `
+    const url2 = `https://api.openweathermap.org/data/2.5/forecast?units=metric&id=${cityId}&appid=${API_KEY}
+    `
     getData(url, data => {
         console.log(data);
-        weatherList.push(data)
-        addCity(citiesList, weatherList)
+        const timestamp = citiesLS.find(city => city.id === cityId).timestamp
+        getData(url2, forecast => {
+            weatherList.push({ timestamp, data: {...data, forecast: forecast.list} })
+            addCities(citiesList, weatherList)
+        })
+        
     })
 }
 async function getData(url, cb) {
     try {
         const response = await fetch(url)
-        const data = await response.json()
-        cb(data)
+        if (response.ok) {
+            const data = await response.json()
+            cb(data)
+        }
     } catch (error) {
         console.warn(error);
     }
 }
-function addCity(elem, cities) {
+function addCities(elem, cities) {
+    console.log(cities);
+    cities.sort((a, b) => (a.timestamp - b.timestamp) * -1)
     let cityHtml = ''
-        cities.forEach(city => {
-        cityHtml += renderCity(city)
-        });
-        elem.innerHTML = cityHtml
-      }
-  function renderCity(data) {
+    cities.forEach(city => {
+        cityHtml += renderCity(city.data)
+    });
+    elem.innerHTML = cityHtml
+}
+function renderCity(data) {
     const html =
         `<div class="city-section">
         <div class="city-info">
             <div class="city-temp">
                 <div class="left-temp">
-                    <img src="//ssl.gstatic.com/onebox/weather/64/rain.png" alt="rain">
-                    <div class="temp">${data.main.temp}</div>
+                    <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="rain">
+                    <div class="temp">${Math.round(data.main.temp)} °C</div>
                 </div>
                 <div class="right-more-info">
-                    <div>Чувствуется как: ${data.main.feels_like}</div>
-                    <div>Влажность: ${data.main.humidity}</div>
-                    <div>Ветер: ${data.wind.speed}км / ч</div>
+                    <div>Чувствуется как: ${Math.round(data.main.feels_like)} °C</div>
+                    <div>Влажность: ${data.main.humidity} %</div>
+                    <div>Ветер: ${Math.round(data.wind.speed * 3.6)} км/ч</div>
                 </div>
             </div>
             <div class="city-type">
                 <div class="name-city">${data.name}</div>
-                <div class="day-time">${data.dt}</div>
-                <div class="type-wheather">${data.weather[1]}</div>
+                <div class="day-time">расс: ${new Date((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()} закат: ${new Date((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
+                <div class="type-wheather">${data.weather[0].main}</div>
             </div>
         </div>
         <div class="temp-hours">
