@@ -88,48 +88,48 @@ function renderCity(data) {
             </div>
             <div class="city-type">
                 <div class="name-city">${data.name}</div>
-                <div class="day-time">расс: ${new Date((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()} закат: ${new Date((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
+                <div class="day-time">Sunrise: ${new Date((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}<br> Sunset: ${new Date((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <div class="type-wheather">${data.weather[0].main}</div>
             </div>
         </div>
         <div class="temp-hours">
             <div class="info-day">
-                <div class="data">1 AM</div>
+                <div class="data">${new Date((data.forecast[0].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[0].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">4 AM</div>
+                <div class="data">${new Date((data.forecast[1].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[1].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">7 AM</div>
+                <div class="data">${new Date((data.forecast[2].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[2].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">10 AM</div>
+                <div class="data">${new Date((data.forecast[3].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[3].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">1 PM</div>
+                <div class="data">${new Date((data.forecast[4].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[4].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">4 PM</div>
+                <div class="data">${new Date((data.forecast[5].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[5].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">7 PM</div>
+                <div class="data">${new Date((data.forecast[6].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[6].main.temp)} °C</div>
             </div>
             <div class="info-day">
-                <div class="data">10 PM</div>
+                <div class="data">${new Date((data.forecast[7].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
                 <div class="temp-day">${Math.round(data.forecast[7].main.temp)} °C</div>
             </div>
