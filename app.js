@@ -89,7 +89,7 @@ function renderCity(data) {
             <div class="city-type">
                 <div class="name-city">${data.name}</div>
                 <div class="day-time">Sunrise: ${new Date((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}<br> Sunset: ${new Date((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <div class="type-wheather">${data.weather[0].main}</div>
+                <div class="type-wheather">${data.weather[0].description}</div>
             </div>
         </div>
         <div class="temp-hours">
