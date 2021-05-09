@@ -167,3 +167,32 @@ table {
     font-weight: 600;
     text-align: center;
 }
+.wind-dir{
+    display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+.temp-wrap{
+    display: flex;
+    align-items: flex-end;
+    margin-top: 200px;
+    height: 300px;
+}
+.temp{
+    flex-grow: 1;
+    border-top: 10px solid #999;
+    background: #ccc;
+}
+.temp:nth-child(3){
+    height: 35%;
+}
+.temp:nth-child(4){
+    height: 45%;
+}

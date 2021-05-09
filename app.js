@@ -1,7 +1,12 @@
 const API_KEY = '0ce7524a2107c97ceb90a85e7711636b'
+const lang = window.navigator.language.slice(0, 2)
 const citySearch = document.getElementById('citySearch')
 const citiesList = document.getElementById('citiesList')
 const timeZoneOffsetSeconds = new Date().getTimezoneOffset() * -1 * 60
+const timeFormatter = new Intl.DateTimeFormat(undefined, {
+    hour: '2-digit',
+    minute: '2-digit'
+})
 const weatherList = []
 if (!localStorage.cities) {
     localStorage.cities = JSON.stringify([])
@@ -24,7 +29,7 @@ function getWeatherBySavedCities(citiesIdList) {
 }
 
 function getDataByCityName(cityName) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=${API_KEY}
+    const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lang=${lang}&q=${cityName}&appid=${API_KEY}
     `
     getData(url, data => {
         console.log(data);
@@ -37,9 +42,9 @@ function getDataByCityName(cityName) {
     })
 }
 function getDataByCityId(cityId) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&id=${cityId}&appid=${API_KEY}
+    const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lang=${lang}&id=${cityId}&appid=${API_KEY}
     `
-    const url2 = `https://api.openweathermap.org/data/2.5/forecast?units=metric&id=${cityId}&appid=${API_KEY}
+    const url2 = `https://api.openweathermap.org/data/2.5/forecast?units=metric&lang=${lang}&id=${cityId}&appid=${API_KEY}
     `
     getData(url, data => {
         console.log(data);
@@ -83,65 +88,33 @@ function renderCity(data) {
                 <div class="right-more-info">
                     <div>Чувствуется как: ${Math.round(data.main.feels_like)} °C</div>
                     <div>Влажность: ${data.main.humidity} %</div>
-                    <div>Ветер: ${Math.round(data.wind.speed * 3.6)} км/ч</div>
+                    <div>Ветер: ${Math.round(data.wind.speed * 3.6)} км/ч <span class="wind-dir" style="transform: rotate(${data.wind.deg}deg)">&#129045;</span></div>
                 </div>
             </div>
             <div class="city-type">
                 <div class="name-city">${data.name}</div>
-                <div class="day-time">Sunrise: ${new Date((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}<br> Sunset: ${new Date((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
+                <div class="day-time">Sunrise: ${timeFormatter.format((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000)}<br> Sunset: ${timeFormatter.format((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000)}</div>
                 <div class="type-wheather">${data.weather[0].description}</div>
             </div>
         </div>
         <div class="temp-hours">
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[0].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[0].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[0].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[1].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[1].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[1].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[1].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[2].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[2].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[2].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[2].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[3].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[3].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[3].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[3].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[4].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[4].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[4].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[4].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[5].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[5].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[5].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[5].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[6].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[6].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[6].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[6].main.temp_min)} °C</div></div>
-            </div>
-            <div class="info-day">
-                <div class="data">${new Date((data.forecast[7].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[7].weather[0].icon}.png" alt="rain">
-                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[7].main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.forecast[7].main.temp_min)} °C</div></div>
-            </div>
+            ${renderCityForecast(data.forecast, data.timezone)}
         </div>
     </div>`
     return html
+}
+
+function renderCityForecast(forecast, timezone) {
+    let forecastHtml = ''
+    for (let i = 0; i < 8; i++) {
+        const part = forecast[i];
+        forecastHtml += `<div class="info-day">
+        <div class="data">${timeFormatter.format((part.dt - timeZoneOffsetSeconds + timezone) * 1000)}</div>
+        <img src="http://openweathermap.org/img/w/${part.weather[0].icon}.png" alt="rain">
+        <div class="data">${part.weather[0].main}</div>
+        <div class="temp-day"> <div class="temp-max">${Math.round(part.main.temp_max)} °C</div>
+        <div class="temp-min">${Math.floor(part.main.temp_min)} °C</div></div>
+    </div>`
+    }
+    return forecastHtml
 }
