@@ -45,10 +45,10 @@ function getDataByCityId(cityId) {
         console.log(data);
         const timestamp = citiesLS.find(city => city.id === cityId).timestamp
         getData(url2, forecast => {
-            weatherList.push({ timestamp, data: {...data, forecast: forecast.list} })
+            weatherList.push({ timestamp, data: { ...data, forecast: forecast.list } })
             addCities(citiesList, weatherList)
         })
-        
+
     })
 }
 async function getData(url, cb) {
@@ -96,42 +96,50 @@ function renderCity(data) {
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[0].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
                 <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[0].main.temp)} °C</div>
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[0].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[0].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[1].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[1].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[1].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[1].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[1].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[2].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[2].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[2].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[2].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[2].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[3].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[3].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[3].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[3].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[3].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[4].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[4].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[4].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[4].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[4].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[5].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[5].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[5].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[5].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[5].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[6].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[6].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[6].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[6].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[6].main.temp_min)} °C</div></div>
             </div>
             <div class="info-day">
                 <div class="data">${new Date((data.forecast[7].dt - timeZoneOffsetSeconds + data.timezone) * 1000).toLocaleTimeString()}</div>
-                <img src="http://openweathermap.org/img/w/${data.forecast[0].weather[0].icon}.png" alt="rain">
-                <div class="temp-day">${Math.round(data.forecast[7].main.temp)} °C</div>
+                <img src="http://openweathermap.org/img/w/${data.forecast[7].weather[0].icon}.png" alt="rain">
+                <div class="temp-day"> <div class="temp-max">${Math.round(data.forecast[7].main.temp_max)} °C</div>
+                <div class="temp-min">${Math.floor(data.forecast[7].main.temp_min)} °C</div></div>
             </div>
         </div>
     </div>`

@@ -119,6 +119,16 @@ table {
 .temp{
     font-size: 48px;
 }
+.temp-day{
+    display: flex;
+    flex-direction: row;
+}
+.temp-max{
+    margin-right: 15px;
+}
+.temp-min{
+    color: lavender;
+}
 .city-type{
     display: flex;
     flex-direction: column;
