@@ -126,6 +126,9 @@ table {
     display: flex;
     flex-direction: row;
 }
+.temp-day-min{
+    color: lavender;
+}
 .temp-max{
     margin-right: 15px;
 }

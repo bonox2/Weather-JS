@@ -78,10 +78,8 @@ function renderCity(data) {
             <div class="city-temp">
                 <div class="left-temp">
                     <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="rain">
-                    <div class="temp">${Math.round(data.main.temp)} °C</div>
-                    <div class="temp-day"> <div class="temp-max">${Math.round(data.main.temp_max)} °C</div>
-                <div class="temp-min">${Math.floor(data.main.temp_min)} °C</div></div>
-                </div>
+                    <div class="temp">${Math.round(data.main.temp)} °C <div class="temp-day-min">${Math.floor(data.main.temp_min)} °C</div></div>
+                    </div>
                 <div class="right-more-info">
                     <div>Чувствуется как: ${Math.round(data.main.feels_like)} °C</div>
                     <div>Влажность: ${data.main.humidity} %</div>
