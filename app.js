@@ -83,7 +83,7 @@ function renderCity(data) {
             <div class="city-temp">
                 <div class="left-temp">
                     <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="rain">
-                    <div class="temp">${Math.round(data.main.temp)} °C <div class="temp-day-min">${Math.floor(data.main.temp_min)} °C</div></div>
+                    <div class="temp">${Math.round(data.main.temp)} °C</div>
                     </div>
                 <div class="right-more-info">
                     <div>Чувствуется как: ${Math.round(data.main.feels_like)} °C</div>
@@ -97,6 +97,16 @@ function renderCity(data) {
                 <div class="type-wheather">${data.weather[0].description}</div>
             </div>
         </div>
+        <div class="temp-wrap">
+            <div class="temp" style="height: ${Math.round(data.forecast[0].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[1].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[2].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[3].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[4].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[5].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[6].main.temp)}%" ></div>
+            <div class="temp" style="height: ${Math.round(data.forecast[7].main.temp)}%" ></div>
+            </div>
         <div class="temp-hours">
             ${renderCityForecast(data.forecast, data.timezone)}
         </div>
@@ -111,9 +121,7 @@ function renderCityForecast(forecast, timezone) {
         forecastHtml += `<div class="info-day">
         <div class="data">${timeFormatter.format((part.dt - timeZoneOffsetSeconds + timezone) * 1000)}</div>
         <img src="http://openweathermap.org/img/w/${part.weather[0].icon}.png" alt="rain">
-        <div class="data">${part.weather[0].main}</div>
-        <div class="temp-day"> <div class="temp-max">${Math.round(part.main.temp_max)} °C</div>
-        <div class="temp-min">${Math.floor(part.main.temp_min)} °C</div></div>
+        <d class="temp-day"> <div class="temp-max">${Math.round(part.main.temp_max)} °C</div></d iv>
     </div>`
     }
     return forecastHtml
