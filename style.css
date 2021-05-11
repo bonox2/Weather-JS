@@ -99,28 +99,24 @@ table {
 }
 .city-info{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
-    padding-bottom: 40px;
-}
-.type-wheather{
-    text-transform: uppercase;
-}
-.city-temp{
-    display: flex;
 }
 .left-temp{
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 .right-more-info{
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    padding:12px 0 0 9px;
+    width: 70%;
 }
-.temp{
+.tempr{
     font-size: 48px;
+    display: flex;
 }
 .temp-day{
     display: flex;
@@ -149,11 +145,10 @@ table {
     font-size: 18px;
 }
 .temp-hours{
-    padding-top: 120px;
+    padding-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 100%;
 }
 .info-day{
     display: flex;
@@ -182,17 +177,18 @@ table {
 .temp-wrap{
     display: flex;
     align-items: flex-end;
-    margin-top: 200px;
-    height: 300px;
+    height: 150px;
 }
 .temp{
     flex-grow: 1;
-    border-top: 10px solid #999;
-    background: #ccc;
+    border-top: 3px solid #999;
+    position: relative;
 }
-.temp:nth-child(3){
-    height: 35%;
-}
-.temp:nth-child(4){
-    height: 45%;
+.degre{
+    position: absolute;
+    left: calc(40%);
+    bottom: 130%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
