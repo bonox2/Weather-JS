@@ -77,6 +77,10 @@ function addCities(elem, cities) {
     elem.innerHTML = cityHtml
 }
 function renderCity(data) {
+    const foreCastTemps = data.forecast.map(cast => cast.main.temp)
+    const minTemp = Math.min(...foreCastTemps)
+    const maxTemp = Math.max(...foreCastTemps)
+    console.log(minTemp, maxTemp);
     const html =
         `<div class="city-section">
         <div class="city-info">
@@ -94,11 +98,7 @@ function renderCity(data) {
                 </div>
                 <div class="right-more-info">
                     <div class="temp-wrap">
-                    <div class="temp" style="height: ${Math.round(data.forecast[0].main.temp)}%" > <div class="degre">${Math.round(data.forecast[0].main.temp)} °C</div></div>
-                    <div class="temp" style="height: ${Math.round(data.forecast[1].main.temp)}%" > <div class="degre">${Math.round(data.forecast[1].main.temp)} °C</div></div>
-                    <div class="temp" style="height: ${Math.round(data.forecast[2].main.temp)}%" > <div class="degre">${Math.round(data.forecast[2].main.temp)} °C</div></div>
-                    <div class="temp" style="height: ${Math.round(data.forecast[3].main.temp)}%" > <div class="degre">${Math.round(data.forecast[3].main.temp)} °C</div></div>
-                    <div class="temp" style="height: ${Math.round(data.forecast[4].main.temp)}%" > <div class="degre">${Math.round(data.forecast[4].main.temp)} °C</div></div>
+                    ${renderCityForecastTemps(data.forecast, minTemp, maxTemp)}
                     </div>
                     <div class="temp-hours">
                     ${renderCityForecast(data.forecast, data.timezone)}
@@ -119,4 +119,41 @@ function renderCityForecast(forecast, timezone) {
     </div>`
     }
     return forecastHtml
+}
+function renderCityForecastTemps(forecast, minTemp, maxTemp) {
+    let forecastTempsHtml = ''
+    for (let i = 0; i < 5; i++) {
+        const part = forecast[i];
+        forecastTempsHtml += `<div class="temp" style="border-color: hsl(${getTempColor(part.main.temp)}, 60%, 50%);background-color: hsl(${getTempColor(part.main.temp)}, 100%, 80%); height: ${Math.round(getPercentFromRange(part.main.temp, minTemp - 10, maxTemp + 10))}%" > <div class="degre">${Math.round(part.main.temp)} °C</div></div>`
+    }
+    return forecastTempsHtml
+}
+
+
+
+
+function getPercentFromRange(x, r0, r1) {
+    x = Math.round(x)
+    return (x - r0) * 100 / (r1 - r0)
+}
+
+
+function getTempColor(temp, r0 = -50, r1 = 50) {
+    temp = Math.round(temp)
+    const minTempHue = 270
+    if (r0 < -50) {
+        r0 = -50
+    }
+    if (r1 > 50) {
+        r1 = 50
+    }
+    if (temp < r0) {
+        temp = r0
+    }
+    if (temp > r1) {
+        temp = r1
+    }
+    const tempPercent = Math.round(getPercentFromRange(temp, r0, r1))
+    const hue = ((-1 * minTempHue / 100) * tempPercent) + minTempHue
+    return hue
 }
