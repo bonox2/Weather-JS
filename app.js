@@ -97,12 +97,13 @@ function renderCity(data) {
                     <div>Ветер: ${Math.round(data.wind.speed * 3.6)} км/ч <span class="wind-dir" style="transform: rotate(${data.wind.deg}deg)">&#129045;</span></div>
                 </div>
                 <div class="right-more-info">
+                <div class="temp-hours">
+                    ${renderCityForecast(data.forecast, data.timezone)}
+                </div>
                     <div class="temp-wrap">
                     ${renderCityForecastTemps(data.forecast, minTemp, maxTemp)}
                     </div>
-                    <div class="temp-hours">
-                    ${renderCityForecast(data.forecast, data.timezone)}
-                </div>
+                    
             </div>
         </div>
     </div>`
@@ -124,7 +125,7 @@ function renderCityForecastTemps(forecast, minTemp, maxTemp) {
     let forecastTempsHtml = ''
     for (let i = 0; i < 5; i++) {
         const part = forecast[i];
-        forecastTempsHtml += `<div class="temp" style="border-color: hsl(${getTempColor(part.main.temp)}, 60%, 50%);background-color: hsl(${getTempColor(part.main.temp)}, 100%, 80%); height: ${Math.round(getPercentFromRange(part.main.temp, minTemp - 10, maxTemp + 10))}%" > <div class="degre">${Math.round(part.main.temp)} °C</div></div>`
+        forecastTempsHtml += `<div class="temp" style="border-color: hsl(${getTempColor(part.main.temp)}, 60%, 50%);background-color: hsl(${getTempColor(part.main.temp)}, 100%, 80%); height: ${Math.round(getPercentFromRange(part.main.temp, minTemp - 25, maxTemp + 10))}%" > <div class="degre">${Math.round(part.main.temp)} °C</div></div>`
     }
     return forecastTempsHtml
 }
