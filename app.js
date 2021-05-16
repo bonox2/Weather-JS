@@ -85,16 +85,18 @@ function renderCity(data) {
         `<div class="city-section">
         <div class="city-info">
                 <div class="left-temp">
-                  <div class="tempr">
+                    <div class="name-city">${data.name}</div>
+                    <div class="tempr">
                     <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="rain">
                     <div>${Math.round(data.main.temp)} °C</div>
                     </div>
-                    <div class="name-city">${data.name}</div>
-                <div class="day-time">Sunrise: ${timeFormatter.format((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000)}<br> Sunset: ${timeFormatter.format((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000)}</div>
-                    <div class="type-wheather">${data.weather[0].description}</div>
+                <div class="more-info">Sunrise: ${timeFormatter.format((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000)}
+                  Sunset: ${timeFormatter.format((data.sys.sunset - timeZoneOffsetSeconds + data.timezone) * 1000)}
+                    <div class="type-wheather">Вид погоды: ${data.weather[0].description}</div>
                     <div>Чувствуется как: ${Math.round(data.main.feels_like)} °C</div>
                     <div>Влажность: ${data.main.humidity} %</div>
                     <div>Ветер: ${Math.round(data.wind.speed * 3.6)} км/ч <span class="wind-dir" style="transform: rotate(${data.wind.deg}deg)">&#129045;</span></div>
+                </div>
                 </div>
                 <div class="right-more-info">
                 <div class="temp-hours">

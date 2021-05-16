@@ -145,6 +145,15 @@ table {
 }
 .name-city{
     font-size: 22px;
+    color: #4285f4;
+}
+.more-info{
+    color: lightslategray;
+    font-weight: 600;
+    font-size: 18px;
+}
+.more-info > div{
+    padding-top: 8px;
 }
 .day-time{
     display: inline-block;
@@ -164,7 +173,6 @@ table {
     justify-content: center;
 }
 .data{
-    color: #ffccff;
     display: block;
     font-weight: 600;
     text-align: center;
