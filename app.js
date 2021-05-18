@@ -2,6 +2,15 @@ const API_KEY = '0ce7524a2107c97ceb90a85e7711636b'
 const lang = window.navigator.language.slice(0, 2)
 const citySearch = document.getElementById('citySearch')
 const citiesList = document.getElementById('citiesList')
+const weatherTypesVideos = {
+    "Thunderstorm": 'Thunderstorm.mp4',
+    "Drizzle": 'Drizzle.mp4',
+    "Rain": "Rain.mp4",
+    "Snow": "Snow.mp4",
+    "Clear": "Clear.mp4",
+    "Clouds": "Clouds.mp4",
+    "Fog": "Fog.mp4"
+}
 const timeZoneOffsetSeconds = new Date().getTimezoneOffset() * -1 * 60
 const timeFormatter = new Intl.DateTimeFormat(undefined, {
     hour: '2-digit',
@@ -83,11 +92,12 @@ function renderCity(data) {
     console.log(minTemp, maxTemp);
     const html =
         `<div class="city-section">
+        <video autoplay loop mute src="${location.origin}/videos/${weatherTypesVideos[data.weather[0].main]}"></video>
         <div class="city-info">
                 <div class="left-temp">
                     <div class="name-city">${data.name}</div>
                     <div class="tempr">
-                    <img src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="rain">
+                    <img class="icon-weather" src="./img/${data.weather[0].main}.svg" alt="rain">
                     <div>${Math.round(data.main.temp)} °C</div>
                     </div>
                 <div class="more-info">Sunrise: ${timeFormatter.format((data.sys.sunrise - timeZoneOffsetSeconds + data.timezone) * 1000)}
@@ -111,6 +121,9 @@ function renderCity(data) {
     </div>`
     return html
 }
+
+setInterval(renderCity, 1800000)
+
 
 function renderCityForecast(forecast, timezone) {
     let forecastHtml = ''

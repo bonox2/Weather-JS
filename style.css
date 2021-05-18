@@ -98,7 +98,28 @@ table {
     border-radius: 18px;
     background-color: #fff;
     margin-bottom: 30px;
+    position: relative;
+    z-index: 0;
     box-shadow: 0 2px 5px 1px rgb(64 60 67 / 16%);
+}
+.city-section::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.644);
+    z-index: -1;
+}
+.city-section>video{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    z-index: -2;
 }
 .city-info{
     display: flex;
@@ -106,17 +127,19 @@ table {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+
 }
 .left-temp{
     display: flex;
     flex-direction: column;
     padding-right: 15px ;
+    width: 50%;
 }
 .right-more-info{
     display: flex;
     flex-direction: column;
     font-size: 16px;
-    width: 350px;
+    width: 50%;
     position: relative;
     right: -15px;
     border-left: 2px solid #d0d0d0;
@@ -146,6 +169,10 @@ table {
 .name-city{
     font-size: 22px;
     color: #4285f4;
+}
+.icon-weather{
+    width: 50px;
+    height: 50px;
 }
 .more-info{
     color: lightslategray;
