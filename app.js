@@ -92,7 +92,7 @@ function renderCity(data) {
     console.log(minTemp, maxTemp);
     const html =
         `<div class="city-section">
-        <video autoplay loop mute src="${location.origin}/videos/${weatherTypesVideos[data.weather[0].main]}"></video>
+        <video autoplay loop mute src="${location.href}/videos/${weatherTypesVideos[data.weather[0].main]}"></video>
         <div class="city-info">
                 <div class="left-temp">
                     <div class="name-city">${data.name}</div>
@@ -122,7 +122,7 @@ function renderCity(data) {
     return html
 }
 
-setInterval(renderCity, 1800000)
+setInterval(getWeatherBySavedCities, 1800000)
 
 
 function renderCityForecast(forecast, timezone) {

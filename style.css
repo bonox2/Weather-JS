@@ -127,7 +127,7 @@ table {
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
-
+    border-radius: 18px;
 }
 .left-temp{
     display: flex;
@@ -175,7 +175,7 @@ table {
     height: 50px;
 }
 .more-info{
-    color: lightslategray;
+    color: grey;
     font-weight: 600;
     font-size: 18px;
 }
