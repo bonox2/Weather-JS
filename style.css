@@ -96,6 +96,7 @@ table {
     flex-direction: column;
     padding: 15px;
     border-radius: 18px;
+    overflow: hidden;
     background-color: #fff;
     margin-bottom: 30px;
     position: relative;
